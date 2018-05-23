@@ -30,3 +30,13 @@ insert into education_info (label, mark) values ('KPI', 0.5);
 insert into education_info (label, mark) values ('KNU', 0.5);
 
 
+DO
+$do$
+BEGIN
+   FOR i IN 1..20 LOOP
+     insert into klient_profile (passport_seria, passport_number, PIB, adress, phone_number, age_id, ms_id, education_id, incomes_id)
+      values  ('TT', 1212+i, 'Иванов Иван Иванович', 'spasskaya str.2', 1111111+i, i, i, 1, i);
+   END LOOP;
+END
+$do$;
+

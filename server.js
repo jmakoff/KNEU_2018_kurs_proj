@@ -1,10 +1,24 @@
 const express = require('express');
 const app = express();
 
-app.use(express.static(__dirname + '/front'));
+const knex = require('knex')({
+  client: 'pg',
+  connection: {
+    host: '127.0.0.1',
+    port: 5433,
+    user: 'yuriy',
+    database: 'kredytDB',
+    password: '1111'
+  },
+})
+
+
+app.get('/users', async function (req, res) {
+  res.send(await knex.select().from('klient_profile'))
+});
 
 app.get('/api', (req, res) => {
-    res.send('Router for api!');
+    res.send('prefix for api routes');
 });
 
 app.get('*', (req, res) => {
@@ -12,5 +26,5 @@ app.get('*', (req, res) => {
 });
 
 app.listen(8080, function () {
-  console.log('Example app listening on port 8080!');
-});
+  console.log('Example app listening on port 8080!')
+})
