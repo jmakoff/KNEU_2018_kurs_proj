@@ -1,0 +1,32 @@
+[v-cloak] {
+    display: none;
+}
+
+.uk-container {
+    margin-bottom: 30px;
+}
+
+.uk-container .uk-heading-divider {
+    margin-top: 50px;
+}
+
+.users-list .user {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    box-sizing: border-box;
+    border-radius: 4px;
+    transition: opacity .3s, transform .4s;
+    margin: 10px 0;
+    padding: 15px 15px 15px 20px;
+}
+
+.users-list .user.rating-unsuccess {
+    background-color: #fef0f0;
+    border-color: #fde2e2;
+}
+
+.users-list .user.rating-success {
+    background-color: #f0f9eb;
+    border-color: #e1f3d8;
+}
