@@ -1,4 +1,5 @@
 export default {
+    name: 'UserForm',
     template: `
         <div class="user-form">
             <h2 class="uk-heading-divider">

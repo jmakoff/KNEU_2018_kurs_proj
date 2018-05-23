@@ -1,4 +1,5 @@
 export default {
+    name: 'UsersList',
     template: `
         <div class="users-list">
             <h2 class="uk-heading-divider">

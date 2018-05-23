@@ -12,6 +12,7 @@ const knex = require('knex')({
   },
 })
 
+app.use(express.static("front"));
 
 app.get('/users', async function (req, res) {
   res.send(await knex.select().from('klient_profile'))
