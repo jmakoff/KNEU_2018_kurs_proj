@@ -1,4 +1,4 @@
-create table klient_profile (
+create table client_profile (
 id serial primary key,
 passport_seria text,
 passport_number bigint,
