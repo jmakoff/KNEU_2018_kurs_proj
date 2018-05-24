@@ -72,9 +72,6 @@ app.post('/api/addMs', async function (req, res) {
   res.send(await knex('incomes_info').insert({count, mark}))
 })
 
-
-
-
 app.get('*', (req, res) => {
     res.sendFile(__dirname + '/front/index.html');
 });

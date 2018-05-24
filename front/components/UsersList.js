@@ -11,11 +11,14 @@ export default {
                     :class="'user '+(user.rating ?'rating-success' :'rating-unsuccess')"
                 >
                     <div class="user__name">
-                        {{ user.name }}
+                        {{ user.pib }}
                     </div>
+                    <div>Паспорт: {{ user.passport_seria }} {{ user.passport_number}}</div>
+                    <div>Номер телефону: {{user.phone_number}}</div>
                     <div class="user__rating">
                          {{ user.rating ?'надати' :'не надавати' }} кредит
                     </div>
+                    <a :link="'/editUser/' + user.id">Редагувати</a>
                 </div>
             </div>
         </div>
@@ -30,5 +33,10 @@ export default {
             .then(({data: users}) => {
                 this.users = users.map(user => ({...user, rating: Math.random() >= 0.5}));
             })
+    },
+    methods: {
+        goToPage(path) {
+            console.log(path)
+      }
     }
 }
