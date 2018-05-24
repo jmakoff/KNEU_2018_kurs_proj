@@ -15,7 +15,26 @@ const knex = require('knex')({
 app.use(express.static("front"));
 /* users */
 app.get('/api/usersList', async function (req, res) {
-  res.send(await knex('client_profile'))
+  const table = await knex('client_profile as cp')
+    .join('age_info as a', 'cp.age_id', 'a.id')
+    .join('ms_info as ms', 'cp.ms_id', 'ms.id')
+    .join('education_info as e', 'cp.education_id', 'e.id')
+    .join('incomes_info as i', 'cp.incomes_id', 'i.id')
+    .select(knex.raw (`cp.passport_seria as passport_seria,
+      cp.passport_number ,
+      cp.PIB ,
+      cp.adress,
+      cp.phone_number,
+      cp.age_id,
+      cp.ms_id,
+      cp.education_id,
+      cp.incomes_id,
+      round((a.mark + ms.mark + i.mark + e.mark)/4, 2) as rank,
+      a.mark as age_mark,
+      ms.mark as ms_mark,
+      i.mark as incomes_mark,
+      e.mark as education_mark`))
+  res.send(table)
 });
 
 app.post('/api/addUser', async function (req, res) {

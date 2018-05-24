@@ -8,7 +8,7 @@ export default {
             <div v-cloak class="users">
                 <div
                     v-for="user in users"
-                    :class="'user '+(user.rating ?'rating-success' :'rating-unsuccess')"
+                    :class="'user '+(user.rank >= 0.5 ?'rating-success' :'rating-unsuccess')"
                 >
                     <div class="user__name">
                         {{ user.pib }}
@@ -16,7 +16,7 @@ export default {
                     <div>Паспорт: {{ user.passport_seria }} {{ user.passport_number}}</div>
                     <div>Номер телефону: {{user.phone_number}}</div>
                     <div class="user__rating">
-                         {{ user.rating ?'надати' :'не надавати' }} кредит
+                         {{ user.rank >= 0.5 ?'надати' :'не надавати' }} кредит(бал: {{user.rank}})
                     </div>
                     <a :link="'/editUser/' + user.id">Редагувати</a>
                 </div>
@@ -31,12 +31,7 @@ export default {
     created() {
         axios.get('http://localhost:8080/api/usersList')
             .then(({data: users}) => {
-                this.users = users.map(user => ({...user, rating: Math.random() >= 0.5}));
+                this.users = users.map(user => ({...user}));
             })
     },
-    methods: {
-        goToPage(path) {
-            console.log(path)
-      }
-    }
 }
