@@ -26,7 +26,7 @@ export default {
         }
     },
     created() {
-        axios.get('https://jsonplaceholder.typicode.com/users')
+        axios.get('http://localhost:8080/api/usersList')
             .then(({data: users}) => {
                 this.users = users.map(user => ({...user, rating: Math.random() >= 0.5}));
             })
